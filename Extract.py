@@ -22,8 +22,10 @@ class Image_data_Extractor:
             T.ToTensor(),
             T.Normalize((0.5,), (0.5,))          # if you normalized during training
             ])
+        
     def get_batch_indices(self,Data_size,BatchSize):
         return random.sample(range(Data_size),BatchSize)
+    
     def extract_batch_features(self, image_paths, device):
         batch_centers, batch_features = [], []
         seq_lens = []
@@ -53,6 +55,7 @@ class Image_data_Extractor:
         for i, l in enumerate(seq_lens):
             batch_masks[i, :l] = 1
         return (batch_centers_tensor, batch_features_tensor), batch_masks
+    
     def get_batch_data(self,train_df, padded, batch_size, device):
         indices = self.get_batch_indices(len(train_df), batch_size)
         # Get image paths and token sequences

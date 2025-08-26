@@ -4,8 +4,7 @@ import torch.nn as nn
 import os
 import matplotlib
 import torch.Functions as F
-class Character_Cnn(nn.module):
-    pass
+import torch, math
 class CNNModel(nn.Module):
     def __init__(self, num_classes, use_positional_encoding=True):
         super(CNNModel, self).__init__()
